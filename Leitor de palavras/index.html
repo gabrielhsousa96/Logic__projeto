@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteador de Palavras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="container__Title"> 
+            <h1>Leitor de Palavras</h1>
+        </div>
+        <div class="exibir__Palavra">
+            <p id="word"></p>
+            <p id="palavraEscolhidaContainer">
+            </p>
+
+        </div>
+        <div class="repeat__button">
+            <button class="button" id="lerPalavraButton" style="display:none;">Ler Palavra</button>
+            <button id="repeatButton" class="button" style="display:none;">Repetir Pronúncia</button>
+            <button class="button" id="showWordButton" style="display:none;" onclick="mostrarPalavraEscolhida()">Mostrar Palavra Escolhida</button>
+        </div>
+        <div id="container__Palavras"  class="container__Palavras">
+            <label  id="label__palavra" for="input">Digite as palavras separadas por vírgulas:</label>
+            <input type="text" id="inputWords" placeholder="Palavras">
+            <button id="adicionarPalavras" class="button" onclick="adicionarPalavras()">Adicionar Palavras</button>
+        </div>
+        <div class="container__Buttons">
+            <button class="button" onclick="sortearPalavra()">Sortear Palavra</button>
+
+        </div>
+        <div class="container__repetitions">
+            
+        </div>
+    </div>
+    <script src="app.js" defer></script>
+</body>
+</html>
