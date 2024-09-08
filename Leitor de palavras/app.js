@@ -2,6 +2,7 @@
 let palavras = [];
 let palavrasEscolhidas = [];
 let palavrasEscolhidasContagem = {};
+let ultimaPalavra = [];
 
 
 function adicionarPalavras() {
@@ -42,23 +43,28 @@ function sortearPalavra() {
         alert('Por favor, adicione palavras antes de sortear.');
         return;
     }
-
     let palavra;
+    let tentativas = 0; 
     do {
         palavra = palavras[Math.floor(Math.random() * palavras.length)];
-    } while (palavrasEscolhidasContagem[palavra] >= 3);
+        tentativas++;
+        if (tentativas >= palavras.length) {
+            alert('Não há mais palavras diferentes para sortear.');
+            return;
+        }
+    } while (palavra === ultimaPalavra);
 
-    // Adiciona a palavra sorteada à lista de palavras escolhidas
     if (!palavrasEscolhidasContagem[palavra]) {
         palavrasEscolhidasContagem[palavra] = 0;
     }
     palavrasEscolhidasContagem[palavra]++;
+
+    ultimaPalavra = palavra;
     palavrasEscolhidas.push(palavra);
     lerPalavra(palavra);
     const elementoWord = document.getElementById('word');
     elementoWord.textContent = palavra;
     document.getElementById('repeatButton').style.display = 'inline';
-    document.getElementById('lerPalavraButton').style.display = 'inline'; // Exibir botão de leitura
     document.getElementById('showWordButton').style.display = 'inline'; // Exibir botão de mostrar palavra
     document.getElementById('container__Palavras').style.display = 'none';
     document.getElementById('word').style.display = 'none';
@@ -91,8 +97,3 @@ function mostrarPalavraEscolhida() {
     document.getElementById('word').style.display = 'inline';
 }
 
-// Função para ler a palavra ao clicar no botão
-document.getElementById('lerPalavraButton').addEventListener('click', () => {
-    const palavra = document.getElementById('word').textContent;
-    lerPalavra(palavra);
-});
